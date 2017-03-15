@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data class="LetterBinding">
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnLetter"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:background="@drawable/letter_up"
+
+            android:textColor="@color/whiteBackground" />
+    </LinearLayout>
+</layout>
