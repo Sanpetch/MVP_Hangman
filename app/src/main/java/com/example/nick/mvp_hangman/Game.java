@@ -9,9 +9,7 @@ import java.util.List;
 public class Game {
 
     private boolean isCorrect;
-
     private List<Integer> indexAnswers;
-
     private int countWrong;
 
     public boolean isCorrect() {

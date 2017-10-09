@@ -8,8 +8,12 @@ import java.util.List;
 
 public interface GameView {
     void setTextViewHint(String word);
+
     void showAnswer(List<Integer> index);
+
     void showPerson(int index);
+
     void win();
+
     void gameOver();
 }
