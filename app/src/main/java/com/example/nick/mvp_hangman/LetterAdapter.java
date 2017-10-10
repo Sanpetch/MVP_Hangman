@@ -15,22 +15,20 @@ import com.example.nick.mvp_hangman.databinding.LetterBinding;
 public class LetterAdapter extends RecyclerView.Adapter<LetterAdapter.MyViewHolder> {
 
     String[] letters;
-    private ItemClickCallback  itemClickCallback;
+    private ItemClickCallback itemClickCallback;
 
     public LetterAdapter() {
         letters = new String[26];
 
         for (int i = 0; i < letters.length; i++) {
-            letters[i] = "" + (char)(i+'A');
-
+            letters[i] = "" + (char) (i + 'A');
         }
-
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        LetterBinding binding = LetterBinding.inflate(layoutInflater,parent,false);
+        LetterBinding binding = LetterBinding.inflate(layoutInflater, parent, false);
 
         return new MyViewHolder(binding);
     }
@@ -45,47 +43,38 @@ public class LetterAdapter extends RecyclerView.Adapter<LetterAdapter.MyViewHold
         return letters.length;
     }
 
-    public void setItemClickCallback(ItemClickCallback itemClickCallback){
+    public void setItemClickCallback(ItemClickCallback itemClickCallback) {
         this.itemClickCallback = itemClickCallback;
     }
 
-
-     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private LetterBinding binding;
-         private int position;
-
-         MyViewHolder(LetterBinding dataBinding) {
-            super(dataBinding.getRoot());
-            this.binding = dataBinding;
-
-        }
-
-         void bind(int position){
-             this.position = position;
-             binding.btnLetter.setText(letters[position]);
-             binding.btnLetter.setOnClickListener(this);
-
-        }
-
-         @Override
-         public void onClick(View v) {
-             if(v.getId()==R.id.btnLetter) {
-                 v.setEnabled(false);
-                 binding.btnLetter.setEnabled(false);
-                 binding.btnLetter.setBackgroundResource(R.drawable.letter_down);
-                 binding.btnLetter.setTextColor(Color.BLACK);
-                 itemClickCallback.onItemClick(binding.btnLetter.getText().toString());
-
-             }
-         }
-     }
-
-    public interface  ItemClickCallback{
+    public interface ItemClickCallback {
         void onItemClick(String txt);
     }
 
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private LetterBinding binding;
+        private int position;
 
+        MyViewHolder(LetterBinding dataBinding) {
+            super(dataBinding.getRoot());
+            this.binding = dataBinding;
+        }
 
+        void bind(int position) {
+            this.position = position;
+            binding.btnLetter.setText(letters[position]);
+            binding.btnLetter.setOnClickListener(this);
+        }
 
-
+        @Override
+        public void onClick(View v) {
+            if (v.getId() == R.id.btnLetter) {
+                v.setEnabled(false);
+                binding.btnLetter.setEnabled(false);
+                binding.btnLetter.setBackgroundResource(R.drawable.letter_down);
+                binding.btnLetter.setTextColor(Color.BLACK);
+                itemClickCallback.onItemClick(binding.btnLetter.getText().toString());
+            }
+        }
+    }
 }

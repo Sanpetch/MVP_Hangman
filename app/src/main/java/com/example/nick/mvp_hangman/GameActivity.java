@@ -34,7 +34,6 @@ public class GameActivity extends AppCompatActivity implements LetterAdapter.Ite
         binding = DataBindingUtil.setContentView(this, R.layout.activity_game);
 
         gameStart();
-
     }
 
     private void gameStart() {
@@ -54,11 +53,9 @@ public class GameActivity extends AppCompatActivity implements LetterAdapter.Ite
         bodyParts[4] = binding.leg1;
         bodyParts[5] = binding.leg2;
 
-        for (ImageView bodyPart:bodyParts) {
+        for (ImageView bodyPart : bodyParts) {
             bodyPart.setVisibility(View.INVISIBLE);
         }
-
-
     }
 
     private void initAdapter() {
@@ -68,15 +65,12 @@ public class GameActivity extends AppCompatActivity implements LetterAdapter.Ite
         binding.recycler.setItemAnimator(new DefaultItemAnimator());
         binding.recycler.setAdapter(letterAdapter);
         letterAdapter.setItemClickCallback(this);
-
     }
-
 
     @Override
     public void onItemClick(String txt) {
-        gamePresenter.checkMatch(txt,word);
+        gamePresenter.checkMatch(txt, word);
     }
-
 
     @Override
     public void setTextViewHint(String word) {
@@ -93,7 +87,6 @@ public class GameActivity extends AppCompatActivity implements LetterAdapter.Ite
             txtView[i].setBackgroundResource(R.drawable.letter_bg);
 
             binding.lnChar.addView(txtView[i]);
-
         }
     }
 
@@ -104,26 +97,22 @@ public class GameActivity extends AppCompatActivity implements LetterAdapter.Ite
         }
     }
 
-
-
-
     @Override
     public void showPerson(int index) {
         bodyParts[index].setVisibility(View.VISIBLE);
     }
 
-
     @Override
     public void win() {
-        showAlertDialog(getString(R.string.youWin),getString(R.string.congratulation));
+        showAlertDialog(getString(R.string.youWin), getString(R.string.congratulation));
     }
 
     @Override
     public void gameOver() {
-        showAlertDialog(getString(R.string.gameOver),getString(R.string.answer_is) + word);
+        showAlertDialog(getString(R.string.gameOver), getString(R.string.answer_is) + word);
     }
 
-    public void showAlertDialog(String title,String message){
+    public void showAlertDialog(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
         builder.setMessage(message);
@@ -131,8 +120,6 @@ public class GameActivity extends AppCompatActivity implements LetterAdapter.Ite
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 gameStart();
-
-
             }
         });
         builder.setNeutralButton(R.string.exit, new DialogInterface.OnClickListener() {
@@ -146,5 +133,4 @@ public class GameActivity extends AppCompatActivity implements LetterAdapter.Ite
         alertDialog.setCancelable(false);
         alertDialog.show();
     }
-
 }

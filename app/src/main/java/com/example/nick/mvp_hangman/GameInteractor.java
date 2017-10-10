@@ -15,7 +15,7 @@ public class GameInteractor {
     private int count = 0;
     private int correct = 0;
 
-    public GameInteractor(){
+    public GameInteractor() {
         count = 0;
         correct = 0;
     }
@@ -24,12 +24,9 @@ public class GameInteractor {
         return Observable.just(getRandomWord());
     }
 
-
     public Observable<Game> game(String ans, String word) {
-        return Observable.just(gameCollection(ans,word));
+        return Observable.just(gameCollection(ans, word));
     }
-
-
 
     public String getRandomWord() {
         List<String> words = new ArrayList<>();
@@ -42,43 +39,35 @@ public class GameInteractor {
         words.add("Hippo");
         Random random = new Random();
         return words.get(random.nextInt(words.size()));
-
     }
 
-
-    public Game gameCollection(String answer,String word){
+    public Game gameCollection(String answer, String word) {
         Game game = new Game();
         List<Integer> lsWord = new ArrayList<>();
 
         for (int i = 0; i < word.length(); i++) {
-            if(answer.toLowerCase().charAt(0) == word.toLowerCase().charAt(i)){
+            if (answer.toLowerCase().charAt(0) == word.toLowerCase().charAt(i)) {
                 lsWord.add(i);
             }
         }
 
-        if(lsWord.isEmpty()) {
+        if (lsWord.isEmpty()) {
             game.setCorrect(false);
             game.setCountWrong(count);
             count++;
-        }else{
+        } else {
             game.setCorrect(true);
-            correct = lsWord.size()+correct;
+            correct = lsWord.size() + correct;
             game.setIndexAnswers(lsWord);
         }
         return game;
     }
 
-
-    public Boolean isWin(String word){
+    public Boolean isWin(String word) {
         return correct == word.length();
     }
 
-    public Boolean isLoose(){
+    public Boolean isLoose() {
         return count == 6;
     }
-
-
-
-
-
 }

@@ -27,14 +27,12 @@ public class GamePresenter {
                     public void accept(String s) throws Exception {
                         if (gameView != null) {
                             gameView.setTextViewHint(s);
-
                         }
                     }
                 });
     }
 
     public void checkMatch(String txt, final String word) {
-
         gameInteractor.game(txt, word)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -53,11 +51,7 @@ public class GamePresenter {
                             }
                             gameView.showPerson(game.getCountWrong());
                         }
-
                     }
                 });
-
     }
-
-
 }
