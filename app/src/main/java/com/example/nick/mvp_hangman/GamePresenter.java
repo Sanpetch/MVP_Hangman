@@ -13,8 +13,8 @@ public class GamePresenter {
     private GameView gameView;
     private GameInteractor gameInteractor;
 
-    public GamePresenter(GameView gameView) {
-        this.gameInteractor = new GameInteractor();
+    public GamePresenter(GameView gameView,GameInteractor gameInteractor) {
+        this.gameInteractor = gameInteractor;
         this.gameView = gameView;
     }
 

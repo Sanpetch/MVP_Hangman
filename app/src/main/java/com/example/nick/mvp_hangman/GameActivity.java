@@ -37,7 +37,7 @@ public class GameActivity extends AppCompatActivity implements LetterAdapter.Ite
     }
 
     private void gameStart() {
-        gamePresenter = new GamePresenter(this);
+        gamePresenter = new GamePresenter(this,new GameInteractor());
         initAdapter();
         setHideBody();
         binding.lnChar.removeAllViews();
